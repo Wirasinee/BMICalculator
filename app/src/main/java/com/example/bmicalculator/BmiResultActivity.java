@@ -26,6 +26,9 @@ public class BmiResultActivity extends AppCompatActivity {
         //เอาผลลัพไดอารอคมาแสดงกลางจอ
     }
     private void getBmiIm(Double bmi) {
+
+
+
         if (bmi < 18.5){
             showImage.setImageResource(R.drawable.bmi_underweight);
         }else if(bmi<25){
