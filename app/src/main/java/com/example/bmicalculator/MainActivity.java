@@ -1,6 +1,7 @@
 package com.example.bmicalculator;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.renderscript.Double2;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -42,7 +43,7 @@ public class MainActivity extends AppCompatActivity /*implements View.OnClickLis
                 Double height = Double.valueOf(heightText);
 
                 Double weight = Double.valueOf(mWrightEditText.getText().toString());
-                Double bmi = weight / ((height/100)*(height/100));
+                final Double bmi = weight / ((height/100)*(height/100));
                 /*Toast t =Toast.makeText(
                         MainActivity.this,
                         "ต่า BMI ที่ได้คือ "+String.valueOf(bmi),
@@ -51,12 +52,18 @@ public class MainActivity extends AppCompatActivity /*implements View.OnClickLis
                 );
                 t.show();*/
 
-                String bmiText = getBmiText(bmi);
+                final String bmiText = getBmiText(bmi);
 
-                String result = String.format("ต่า BMI ที่ได้คือ %.1f \n\n อยู่ในเกณฑ์ : %s",bmi,bmiText);
+                //String result = String.format("ต่า BMI ที่ได้คือ %.1f \n\n อยู่ในเกณฑ์ : %s",bmi,bmiText);
+
+                //ให้ไปหน้าถัดไป
+                Intent intent = new Intent(MainActivity.this,BmiResultActivity.class);//(context.คลาสปลายทางที่จะรัน)
+                intent.putExtra("bmi_value",bmi); //ส่งค่าไป (key,value)
+                intent.putExtra("bmi_text",bmiText); //ส่งค่าไปแอคทิวิตีปลายทาง ดูบรรทัด14 BmiResuitActivity.java
+                startActivity(intent);
 
                 /*สร้าง ไดอารอค ตัวแสดงผล*/
-                AlertDialog.Builder dialog = new AlertDialog.Builder(MainActivity.this);
+                /*AlertDialog.Builder dialog = new AlertDialog.Builder(MainActivity.this);
                 dialog.setTitle("BMI Result");
                 dialog.setMessage(result);
                 dialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
@@ -64,14 +71,18 @@ public class MainActivity extends AppCompatActivity /*implements View.OnClickLis
                     public void onClick(DialogInterface dialogInterface, int i) {
                         //โค้ดที่ต้องการให้ทำงาน เมือปุ่ม OK ใน dialog ถูกคลิค
                         //finish(); //เมือกดปุ่ม ok ปิดแอคทิวิตีปัจจุบัน เลย
-                        mHeightEditText.setText(""); //เคลียข้อมูล
-                        mWrightEditText.setText("");
-                        mHeightEditText.requestFocus();//ให้เคอเซอกลับไปช่องแรก
+                        //mHeightEditText.setText(""); //เคลียข้อมูล
+                        //mWrightEditText.setText("");
+                        //mHeightEditText.requestFocus();//ให้เคอเซอกลับไปช่องแรก
+
+
+
                     }
                 });//+p ปุ่มเชิงยอมรับ yes    -ne เชิงปฎิเสธ เช่นปุ่ม no  newนอว กลาง ไม่สนใจ
                 //setPositiveButton(ข้อความ,ลิเซอเนอที่อยากให้ทำ);
 
-                dialog.show();
+                dialog.show();*/
+
 
 
             }
