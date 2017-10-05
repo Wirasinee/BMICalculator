@@ -26,13 +26,6 @@ public class BmiResultActivity extends AppCompatActivity {
         //เอาผลลัพไดอารอคมาแสดงกลางจอ
     }
     private void getBmiIm(Double bmi) {
-        /*
-                bmi <18.5 นนน้อยกว่าปกติ
-                18.5<=bmi<25 ปกติ
-                25 <= bmi<30 มากกว่าปกติ (ท้วม)
-                bmi >= 30 มากกว่าปกติ(อ้วน)
-        */
-
         if (bmi < 18.5){
             showImage.setImageResource(R.drawable.bmi_underweight);
         }else if(bmi<25){
